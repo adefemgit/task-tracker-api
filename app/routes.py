@@ -44,3 +44,12 @@ def update_task(task_id):
 
     db.session.commit()
     return jsonify({"id": task.id, "title": task.title, "completed": task.completed})
+
+@bp.route("/tasks/<int:task_id>", methods= ["DELETE"])
+def delete_task(task_id):
+    task = db.session.get(Task, task_id)
+    if not task:
+        return jsonify({"error": "Task not found"}), 404
+    db.session.delete(task)
+    db.session.commit()
+    return jsonify({"id": task.id, "title": task.title, "completed": task.completed})
