@@ -52,4 +52,4 @@ def delete_task(task_id):
         return jsonify({"error": "Task not found"}), 404
     db.session.delete(task)
     db.session.commit()
-    return jsonify({"id": task.id, "title": task.title, "completed": task.completed})
+    return jsonify({"message": "Task deleted"}), 200
