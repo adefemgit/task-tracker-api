@@ -1,8 +1,9 @@
 from flask import Flask
+from flask.cli import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 
 
-
+load_dotenv()
 db = SQLAlchemy()
 
 
