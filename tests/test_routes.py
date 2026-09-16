@@ -1,3 +1,4 @@
+import os
 import pytest
 from app import db, create_app
 
@@ -5,7 +6,10 @@ from app import db, create_app
 @pytest.fixture
 def client():
     app = create_app({
-        "SQLALCHEMY_DATABASE_URI": "postgresql://jnr@localhost:5432/taskdb_test",
+        "SQLALCHEMY_DATABASE_URI": os.environ.get(
+            "DATABASE_URL", "postgresql://jnr@localhost:5432/taskdb_test"
+        ),
+
         "TESTING": True,
 
     })
