@@ -1,9 +1,10 @@
+import os
 from flask import Flask
-from flask.cli import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
-
+from dotenv import load_dotenv
 
 load_dotenv()
+
 db = SQLAlchemy()
 
 
@@ -13,7 +14,7 @@ def create_app(test_config=None):
     if test_config:
         app.config.update(test_config)
     else:
-        app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://jnr@localhost:5432/taskdb"
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 
     db.init_app(app)
 
